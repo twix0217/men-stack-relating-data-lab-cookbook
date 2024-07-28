@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Editing <%= food.name %></title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit <%= food.name %></h1>
+    <form 
+      action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT"
+      method="POST"
+    >
+      <label for="name">Name:</label>
+      <input 
+        type="text" 
+        name="name" 
+        id="name" 
+        value="<%= food.name %>"
+        required
+      >
+      <label for="quantity">Quantity:</label>
+      <input 
+        type="text" 
+        name="quantity" 
+        id="quantity" 
+        value="<%= food.quantity %>"
+      >
+      <label for="expirationDate">Expiration Date:</label>
+      <input 
+        type="date" 
+        name="expirationDate" 
+        id="expirationDate" 
+        value="<%= food.expirationDate ? food.expirationDate.toISOString().substring(0, 10) : '' %>"
+      >
+      <button type="submit">Update Food Item</button>
+    </form>
+</body>
+</html>
